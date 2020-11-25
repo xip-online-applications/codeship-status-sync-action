@@ -1,7 +1,7 @@
-FROM golang:1.13 as builder
+FROM golang:1.15 as builder
 
 WORKDIR /app
-COPY . /app
+COPY ./pkg /app
 
 RUN go get -d -v
 

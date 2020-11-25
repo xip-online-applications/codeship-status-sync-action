@@ -1,13 +1,22 @@
-name: "Go Container Action Template"
-description: "Get started with Go Container actions"
-author: "Jacob Tomlinson"
+name: "Codeship status connector"
+description: "Retrieves the build status from Codeship and uses it for the current build status"
+author: "Youri Lefers"
 inputs:
-  myInput:
-    description: "Input to use"
-    default: "world"
-outputs:
-  myOutput:
-    description: "Output from the action"
+  codeshipUsername:
+    description: "Username of the Codeship user"
+    required: true
+  codeshipPassword:
+    description: "Password of the Codeship user"
+    required: true
+  codeshipOrganization:
+    description: "Name or UUID of the Codeship organization"
+    required: true
+  codeshipProjectUuid:
+    description: "UUID of the Codeship project"
+    required: true
+  gitCommitSha:
+    description: "SHA1 of the git commit"
+    required: true
 runs:
   using: "docker"
   image: "Dockerfile"
