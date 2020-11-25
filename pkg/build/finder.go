@@ -32,6 +32,8 @@ func (s *Finder) findAndWait(buildId string) (*codeship.Build, error) {
 	build := (*codeship.Build)(nil)
 	runCount := 0
 
+	fmt.Println(fmt.Sprintf("Searching for the build with ID %s...", buildId))
+
 	for build == nil {
 		var err error = nil
 

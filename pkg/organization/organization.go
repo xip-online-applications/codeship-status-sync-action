@@ -11,9 +11,6 @@ type Service struct {
 
 	client       *codeship.Client
 	organization *codeship.Organization
-
-	organizationUuid string
-	projectUuid      string
 }
 
 func NewFromEnvironmentVariables() *Service {
@@ -24,9 +21,7 @@ func NewFromEnvironmentVariables() *Service {
 
 func New(config *Config) *Service {
 	service := &Service{
-		config:           config,
-		organizationUuid: config.organizationUuid,
-		projectUuid:      config.projectUuid,
+		config: config,
 	}
 
 	service.authenticate(config.username, config.password)
@@ -40,7 +35,7 @@ func (s *Service) Organization() *codeship.Organization {
 }
 
 func (s *Service) ProjectUuid() string {
-	return s.projectUuid
+	return s.config.projectUuid
 }
 
 func (s *Service) BuildId() string {
@@ -58,7 +53,7 @@ func (s *Service) authenticate(username string, password string) {
 }
 
 func (s *Service) retrieveOrganization() {
-	org, err := s.client.Organization(context.Background(), s.organizationUuid)
+	org, err := s.client.Organization(context.Background(), s.config.organizationUuid)
 	if err != nil {
 		panic("Request organization not found")
 	}

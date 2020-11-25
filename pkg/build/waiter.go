@@ -25,6 +25,8 @@ func WaitUntilBuildInEndState(organizationService *organization.Service, build *
 func (w *Waiter) waitUntilInEndState() (*Build, error) {
 	runCount := 0
 
+	fmt.Println(fmt.Sprintf("Waiting build with ID %s to be done...", w.build.Uuid()))
+
 	for true {
 		if !w.build.IsRunning() {
 			return w.build, nil
