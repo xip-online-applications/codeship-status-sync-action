@@ -1,0 +1,3 @@
+- name: build
+  service: box
+  command: /bin/bash -c 'ls -la && echo ${CI_BUILD_ID}'
