@@ -8,6 +8,12 @@ jobs:
       - name: Self test
         id: selftest
         uses: xip-online-applications/codeship-status-sync-action@master
+        with:
+          codeshipUsername: ${{ secrets.CODESHIP_USERNAME }}
+          codeshipPassword: ${{ secrets.CODESHIP_PASSWORD }}
+          codeshipOrganization: ${{ secrets.CODESHIP_ORGANIZATION }}
+          codeshipProjectUuid: ${{ secrets.CODESHIP_PROJECT_UUID }}
+          gitCommitSha: ${{ github.sha }}
 
       - name: Check outputs
         run: |
