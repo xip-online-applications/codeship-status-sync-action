@@ -42,7 +42,7 @@ func (s *Finder) findAndWait(buildId string) (*codeship.Build, error) {
 			return nil, err
 		}
 		if build != nil {
-			continue
+			break
 		}
 
 		runCount++
@@ -77,6 +77,8 @@ func (s *Finder) runFindIteration(buildId string) (*codeship.Build, error) {
 func (s *Finder) retrieveBuilds() (*codeship.BuildList, error) {
 	projectUuid := s.organizationService.ProjectUuid()
 	org := s.organizationService.Organization()
+
+	fmt.Println(fmt.Sprintf("Listing builds in project %s...", projectUuid))
 
 	builds, _, err := org.ListBuilds(context.Background(), projectUuid)
 	if err != nil {
