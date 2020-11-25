@@ -17,6 +17,9 @@ inputs:
   gitCommitSha:
     description: "SHA1 of the git commit"
     required: true
+outputs:
+  status:
+    description: "The resulting build status"
 runs:
   using: "docker"
   image: "Dockerfile"
