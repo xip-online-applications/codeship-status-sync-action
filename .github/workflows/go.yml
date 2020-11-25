@@ -15,5 +15,6 @@ jobs:
 
       - name: Build
         run: |
+          cd pkg
           go get -d -v
-          go build -v pkg
+          go build -v .
