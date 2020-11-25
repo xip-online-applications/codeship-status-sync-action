@@ -82,8 +82,11 @@ func (s *Finder) retrieveBuilds() (*codeship.BuildList, error) {
 
 	builds, _, err := org.ListBuilds(context.Background(), projectUuid)
 	if err != nil {
+		fmt.Println(fmt.Sprintf("Listing builds gave an error: %s", err.Error()))
 		return nil, err
 	}
+
+	fmt.Println(fmt.Sprintf("Listing builds total builds: %d", builds.Total))
 
 	return &builds, nil
 }
